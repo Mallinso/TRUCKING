@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Fleet - Amazon Trucking</title>
+    <link rel="stylesheet" href="CSS/STYLE.CSS" />
+  </head>
+
+  <body>
+    <header>
+      <h1 class="logo">
+        <span id="black">Amazon</span> Fleet <span id="black">Management </span>System
+      </h1>
+
+      <div class="hamburger" onclick="toggleNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </header>
+
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="/">Welcome-Page</a></li>
+        <li><a href="Employees.html">Employees</a></li>
+        <li><a href="Trucks.html">Our Fleet</a></li>
+        <li><a href="customers.html">Customers</a></li>
+        <li><a href="Invoices.html">Invoices</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="Contact.html">Get in Touch</a></li>
+        <li><a href="Loginform.html">Login</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="fleet-intro">
+        <h1>Power and Precision on the Road</h1>
+        <p>
+          Discover the diverse range of vehicles that make up the Amazon
+          Trucking fleet. From versatile box trucks to powerful long-haul rigs,
+          we have the right vehicle for every job.
+        </p>
+      </section>
+      <section class="fleet-grid">
+        <div class="fleet-item">
+          <img
+            src="Images/boxtruck.jpg"
+            alt="Amazon Box Truck"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Box Trucks</h2>
+            <p>
+              Perfect for urban deliveries and smaller loads, our box trucks
+              offer flexibility and efficiency.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-weight-hanging"></i>
+                <p>Up to 5 tons</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>14-20 ft length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fleet-item">
+          <img
+            src="Images/flatbed-truck.jpg"
+            alt="Amazon Flatbed Truck"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Flatbed Trucks</h2>
+            <p>
+              Ideal for oversized or oddly shaped cargo, our flatbeds provide
+              versatility for various industries.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-weight-hanging"></i>
+                <p>Up to 20 tons</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>48 ft length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fleet-item">
+          <img
+            src="images/refrigerated-truck.jpg"
+            alt="Amazon Refrigerated Truck"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Refrigerated Trucks</h2>
+            <p>
+              Temperature-controlled transportation for perishable goods,
+              ensuring quality from pickup to delivery.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-temperature-low"></i>
+                <p>-20°C to +20°C</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>20 & 40 ft length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fleet-item">
+          <img
+            src="images/NormalcargoTrailers.jpeg"
+            alt="Amazon Cargo Trailer"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Cargo Trailers</h2>
+            <p>
+              Our long-haul workhorses, designed for efficient cross-country
+              transportation of large loads.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-weight-hanging"></i>
+                <p>Up to 40 tons</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>Up to 53 ft Max length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fleet-item">
+          <img
+            src="images/lowbed.jpeg"
+            alt="Amazon lowbed Trailer"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Lowbed Trailers</h2>
+            <p>
+              Our long-haul workhorses, designed for efficient cross-country
+              transportation of large tractors and machinery.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-weight-hanging"></i>
+                <p>Up to 60 tons</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>Up to 40 ft Max length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fleet-item">
+          <img
+            src="images/loggingtruck.jpg"
+            alt="Amazon Cargo Trailer"
+            width="300"
+            height="200"
+          />
+          <div class="fleet-item-content">
+            <h2>Logging Trailers</h2>
+            <p>
+              Perfect workhorses, designed for efficient transportation of large
+              logs and timber.
+            </p>
+            <div class="fleet-stats">
+              <div class="fleet-stat">
+                <i class="fas fa-weight-hanging"></i>
+                <p>Up to 50 tons</p>
+              </div>
+              <div class="fleet-stat">
+                <i class="fas fa-ruler"></i>
+                <p>Up to 53 ft Max length</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="fleet-cta">
+        <h2>Ready to Put Our Fleet to Work for You?</h2>
+        <p>
+          Let's discuss how our diverse fleet can meet your transportation
+          needs.
+        </p>
+        <a href="Contact.html" class="fleet-cta-button">Get a Custom Quote</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Amazon Trucking. All rights reserved.</p>
+      <p>
+        <a href="/privacy">Privacy Policy</a> |
+        <a href="/terms">Terms of Services</a>
+      </p>
+    </footer>
+    <script src="JS/script.js"></script>
+  </body>
+</html>

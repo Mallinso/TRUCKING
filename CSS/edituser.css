@@ -1,0 +1,79 @@
+/* Container styling */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Form title */
+h1 {
+    color: #ff6600;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Form label styling */
+label {
+    display: block;
+    text-align: left;
+    color: grey;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+/* Input field styling */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Submit button styling */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the submit button */
+input[type="submit"]:hover {
+    background-color: #e67e22;
+}
+
+/* General text and link styling */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Styling for error messages (optional) */
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}

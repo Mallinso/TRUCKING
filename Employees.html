@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #ff6600;
+      }
+      nav {
+        background-color: #333;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 15px;
+        padding: 5px 10px;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      nav a:hover {
+        background-color: #ff6600;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #444;
+      }
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+      tr:hover {
+        background-color: #2c2c2c;
+      }
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .btn-view {
+        background-color: #2196f3;
+        color: white;
+      }
+      .btn-edit {
+        background-color: #ffc107;
+        color: black;
+      }
+      .btn-delete {
+        background-color: #f44336;
+        color: white;
+      }
+      .btn:hover {
+        opacity: 0.8;
+      }
+      .add-employee {
+        margin-top: 20px;
+      }
+      .btn-add {
+        background-color: #ff6600;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+      .search-bar {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .search-bar input,
+      .search-bar select {
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #333;
+        color: #fff;
+      }
+      .search-bar input::placeholder {
+        color: #aaa;
+      }
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background for better contrast */
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #2c2c2c; /* Darker background for modal content */
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 5px; /* Rounded corners for the modal */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Soft shadow effect */
+}
+
+.close {
+  color: #ff6600; /* Color for the close button */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #fff; /* Change color on hover for better visibility */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 {
+  color: #ff6600; /* Title color for the modal */
+}
+
+/* Input and Button Styles */
+input[type="text"],
+input[type="email"],
+select {
+  width: calc(100% - 20px); /* Full width with padding */
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 3px;
+  background-color: #333;
+  color: #fff;
+  margin-bottom: 10px; /* Space between inputs */
+}
+
+input::placeholder {
+  color: #aaa; /* Placeholder color */
+}
+
+button {
+  background-color: #ff6600; /* Button background color */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e65c00; /* Darker shade on hover */
+}    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Employee Management</h1>
+      <nav>
+        <a href="Welcome-Page.html">Home</a>
+        <a href="employees.html">Employees</a>
+        <a href="customers.html">Customers</a>
+        <a href="invoices.html">Invoices</a>
+        <a href="services.html">Products & Services</a>
+        <a href="trucks.html">Trucks</a>
+      </nav>
+
+      <div class="search-bar">
+        <input
+          type="text"
+          id="employeeSearch"
+          placeholder="Search employees..."
+        />
+        <select id="roleFilter">
+          <option value="all">All Roles</option>
+          <option value="driver">Driver</option>
+          <option value="manager">Manager</option>
+          <option value="mechanic">Mechanic</option>
+        </select>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+          <!-- Employee data will be dynamically inserted here -->
+        </tbody>
+      </table>
+
+      <div class="add-employee">
+        <button class="btn btn-add" onclick="showAddEmployeeModal()">
+          Add New Employee
+        </button>
+      </div>
+
+      <!-- Edit Employee Modal -->
+<div id="editEmployeeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditModal()">&times;</span>
+      <h2>Edit Employee</h2>
+      <form id="editEmployeeForm">
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" required />
+        <br />
+        <label for="editRole">Role:</label>
+        <select id="editRole" required>
+          <option value="driver">Driver</option>
+          <option value="manager">Manager</option>
+          <option value="mechanic">Mechanic</option>
+        </select>
+        <br />
+        <label for="editPhone">Phone:</label>
+        <input type="text" id="editPhone" required />
+        <br />
+        <label for="editEmail">Email:</label>
+        <input type="email" id="editEmail" required />
+        <br />
+        <label for="editStatus">Status:</label>
+        <select id="editStatus" required>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <br />
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Add Employee Modal -->
+  <div id="addEmployeeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAddModal()">&times;</span>
+      <h2>Add New Employee</h2>
+      <form id="addEmployeeForm">
+        <label for="addName">Name:</label>
+        <input type="text" id="addName" required />
+        <br />
+        <label for="addRole">Role:</label>
+        <select id="addRole" required>
+          <option value="driver">Driver</option>
+          <option value="manager">Manager</option>
+          <option value="mechanic">Mechanic</option>
+        </select>
+        <br />
+        <label for="addPhone">Phone:</label>
+        <input type="text" id="addPhone" required />
+        <br />
+        <label for="addEmail">Email:</label>
+        <input type="email" id="addEmail" required />
+        <br />
+        <label for="addStatus">Status:</label>
+        <select id="addStatus" required>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <br />
+        <button type="submit">Add Employee</button>
+      </form>
+    </div>
+  </div>
+    </div>
+
+    <script>
+      let employees = JSON.parse(localStorage.getItem("employees")) || [
+        {
+          id: 1,
+          name: "John Doe",
+          role: "driver",
+          phone: "555-0101",
+          email: "john@example.com",
+          status: "active",
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          role: "manager",
+          phone: "555-0102",
+          email: "jane@example.com",
+          status: "active",
+        },
+        {
+          id: 3,
+          name: "Mike Johnson",
+          role: "mechanic",
+          phone: "555-0103",
+          email: "mike@example.com",
+          status: "inactive",
+        },
+        {
+          id: 4,
+          name: "Emily Davis",
+          role: "driver",
+          phone: "555-0104",
+          email: "emily@example.com",
+          status: "active",
+        },
+        {
+          id: 5,
+          name: "Chris Lee",
+          role: "manager",
+          phone: "555-0105",
+          email: "chris@example.com",
+          status: "inactive",
+        },
+      ];
+
+      let currentEditingEmployeeId = null;
+
+      function renderEmployeeTable(employeesToRender) {
+        const tableBody = document.getElementById("employeeTableBody");
+        tableBody.innerHTML = ""; // Clear existing data
+
+        employeesToRender.forEach((employee) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${employee.id}</td>
+          <td>${employee.name}</td>
+          <td>${employee.role}</td>
+          <td>${employee.phone}</td>
+          <td>${employee.email}</td>
+          <td>${employee.status}</td>
+          <td class="action-buttons">
+            <button class="btn btn-view" onclick="viewEmployee(${employee.id})">View</button>
+            <button class="btn btn-edit" onclick="openEditModal(${employee.id})">Edit</button>
+            <button class="btn btn-delete" onclick="deleteEmployee(${employee.id})">Delete</button>
+          </td>
+        `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function filterEmployees() {
+        const searchTerm = document
+          .getElementById("employeeSearch")
+          .value.toLowerCase();
+        const roleFilter = document.getElementById("roleFilter").value;
+
+        const filteredEmployees = employees.filter((employee) => {
+          const matchesSearch =
+            employee.name.toLowerCase().includes(searchTerm) ||
+            employee.phone.includes(searchTerm);
+          const matchesRole =
+            roleFilter === "all" || employee.role === roleFilter;
+          return matchesSearch && matchesRole;
+        });
+
+        renderEmployeeTable(filteredEmployees);
+      }
+
+      document
+        .getElementById("employeeSearch")
+        .addEventListener("input", filterEmployees);
+      document
+        .getElementById("roleFilter")
+        .addEventListener("change", filterEmployees);
+
+      function viewEmployee(id) {
+        const employee = employees.find((e) => e.id === id);
+        alert(`Viewing employee: ${employee.name}`);
+      }
+
+      function openEditModal(id) {
+        currentEditingEmployeeId = id;
+        const employee = employees.find((e) => e.id === id);
+        document.getElementById("editName").value = employee.name;
+        document.getElementById("editRole").value = employee.role;
+        document.getElementById("editPhone").value = employee.phone;
+        document.getElementById("editEmail").value = employee.email;
+        document.getElementById("editStatus").value = employee.status;
+        document.getElementById("editEmployeeModal").style.display = "block";
+      }
+
+      function closeEditModal() {
+        document.getElementById("editEmployeeModal").style.display = "none";
+      }
+
+      document.querySelector(".close").onclick = closeEditModal;
+
+      document.getElementById("editEmployeeForm").onsubmit = (e) => {
+        e.preventDefault(); // Prevent form submission
+        saveEdit();
+      };
+
+      function saveEdit() {
+        const updatedEmployee = {
+          id: currentEditingEmployeeId,
+          name: document.getElementById("editName").value,
+          role: document.getElementById("editRole").value,
+          phone: document.getElementById("editPhone").value,
+          email: document.getElementById("editEmail").value,
+          status: document.getElementById("editStatus").value,
+        };
+
+        const index = employees.findIndex(
+          (e) => e.id === currentEditingEmployeeId
+        );
+        if (index !== -1) {
+          employees[index] = updatedEmployee; // Update the employee record
+          renderEmployeeTable(employees);
+          localStorage.setItem("employees", JSON.stringify(employees)); // Save to localStorage
+          closeEditModal(); // Close the modal
+        }
+      }
+
+      function deleteEmployee(id) {
+        if (confirm("Are you sure you want to delete this employee?")) {
+          const index = employees.findIndex((e) => e.id === id);
+          if (index !== -1) {
+            employees.splice(index, 1); // Remove the employee
+            renderEmployeeTable(employees);
+            localStorage.setItem("employees", JSON.stringify(employees)); // Save to localStorage
+          }
+        }
+      }
+
+      function showAddEmployeeModal() {
+        document.getElementById("addEmployeeModal").style.display = "block";
+      }
+
+      function closeAddModal() {
+        document.getElementById("addEmployeeModal").style.display = "none";
+      }
+
+      document.querySelector(".close").onclick = closeAddModal;
+
+      document.getElementById("addEmployeeForm").onsubmit = (e) => {
+        e.preventDefault(); // Prevent form submission
+        addEmployee();
+      };
+
+      function addEmployee() {
+        const newEmployee = {
+          id: employees.length + 1, // Simple ID generation
+          name: document.getElementById("addName").value,
+          role: document.getElementById("addRole").value,
+          phone: document.getElementById("addPhone").value,
+          email: document.getElementById("addEmail").value,
+          status: document.getElementById("addStatus").value,
+        };
+
+        employees.push(newEmployee); // Add the new employee
+        renderEmployeeTable(employees);
+        localStorage.setItem("employees", JSON.stringify(employees)); // Save to localStorage
+        closeAddModal(); // Close the modal
+      }
+
+      // Initial render of the employee table
+      renderEmployeeTable(employees);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <br /><br />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <br /><br />
+        <input type="submit" value="Login" />
+      </form>
+      <!-- Sign-Up Button -->
+      <p>
+        Don't have an account?
+        <a href="Sign-up.html" id="signUpButton">Sign up here</a>
+      </p>
+      <!-- Forgot Password Link -->
+      <p>Forgot Password? <a href="#" id="forgotPasswordLink">Forgot Password?</a></p>
+      <p>
+        Want to update your information?
+        <a href="edituser.html">Edit here</a>
+      </p>
+      <p>
+        Want to delete your account?
+        <a href="deleteuser.html">Delete  here</a>
+      </p>
+      <p><a href="listusers.html">View registered users</a></p>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Reset Password</h2>
+        <p>Please enter your email to reset your password:</p>
+        <form id="forgotPasswordForm">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+        <!-- Confirmation message (initially hidden) -->
+        <p id="confirmationMessage" style="color: green; display: none">
+          If your email is registered, a password reset link has been sent!
+        </p>
+      </div>
+    </div>
+
+    <script src="JS/login.js"></script>
+  </body>
+</html>

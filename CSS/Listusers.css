@@ -1,0 +1,60 @@
+/* Container styling */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Page title */
+h1 {
+    color: #ff6600;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Table headers */
+th {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* Table cells */
+td {
+    padding: 10px;
+    border: 1px solid grey;
+    color: grey;
+    font-family: Arial, sans-serif;
+}
+
+/* No users message */
+td[colspan="1"] {
+    text-align: center;
+    color: grey;
+}
+
+/* General body styling */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}

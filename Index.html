@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/STYLE.CSS" />
+    <title>Welcome to Amazon Fleet Management System</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+      }
+
+      #bg-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        opacity: 80%;
+      }
+
+      #bg-video video {
+        object-fit: cover; /* Maintain aspect ratio */
+        width: 100%;
+        height: 100%;
+        opacity: 0.9; /* Ensure visibility of text */
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        background: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Darker overlay for better readability */
+        opacity: 0.9;
+      }
+
+      .content h1 {
+        font-size: 3em;
+        margin: 0;
+        animation: fadeInUp 2s ease-out;
+      }
+
+      .content p {
+        font-size: 1.5em;
+        margin-top: 20px;
+        animation: fadeInUp 2.5s ease-out;
+      }
+
+      .content a {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 30px;
+        background-color: #ff6600;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        animation: fadeInUp 3s ease-out;
+      }
+
+      .content a:hover {
+        background-color: #ff6600;
+        transform: translateY(-2px);
+      }
+      #logo {
+        color: #ff6600;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 40px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop id="bg-video">
+      <source src="VIDEO/BACKGROUND.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="content">
+      <div>
+        <h1>Welcome to Amazon <span id="logo">Fleet</span> Management <span id="logo">System</span></h1>
+        <p>Your most trusted delivery partner in East Africa</p>
+        <a href="Welcome-Page.html">Explore Services</a>
+      </div>
+    </div>
+  </body>
+</html>
